@@ -3,5 +3,4 @@
 Cтек:
 
 -react
-
 -library: lodash moment styled-components 
