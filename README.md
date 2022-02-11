@@ -1,7 +1,7 @@
 # приложения для твоего бюджета
 
-##стек:
+Cтек:
 
-###-react
+-react
 
-####-library: lodash moment styled-components 
+-library: lodash moment styled-components 
