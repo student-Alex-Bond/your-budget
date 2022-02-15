@@ -17,7 +17,7 @@ const Input = styled.input`
   font-size: 20px;
   background-color: transparent;
   border: none;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid lightslategray;
   color: white;
   width: 100%;
   padding: 0;
@@ -33,8 +33,8 @@ const LineInput = styled.dd`
 `;
 const Button = styled.button`
   font-family: 'Marmelad', serif;
-  color: white;
-  border: 1px solid white;
+  color: lightslategray;
+  border: 1px solid lightslategray;
   border-radius: 31px;
   background-color: transparent;
   margin: 3px;
@@ -47,14 +47,25 @@ const ExpanseAndIncome = (props) => {
 
     const [transaction, setTransaction] = useState('')
     const [category, setCategory] = useState('')
-
+    const [errorNumber, setErrorNumber] = useState(false)
 
     const handleChangeTransaction = (e) => {
-        setTransaction(e.currentTarget.value)
+        let value = e.currentTarget.value
+        if (!isNaN(Number(value))) {
+            setTransaction(value)
+            setErrorNumber(false)
+        } else (
+            setErrorNumber(true))
     }
 
     const handleChangeCategoryName = (e) => {
         setCategory(e.currentTarget.value)
+    }
+
+    const handlePress = (e) => {
+        if (e.charCode === 13) {
+            handleEnter()
+        }
     }
 
 
@@ -76,12 +87,14 @@ const ExpanseAndIncome = (props) => {
                             onChange={handleChangeTransaction}
                             value={transaction}
                         />
+                        {errorNumber && <span style={{color: 'red'}}>Неверные данные</span>}
                     </LineInput>
                 </InputLine>
                 <InputLine>
                     <LineTitle>Категория:</LineTitle>
                     <LineInput>
                         <Input
+                            onKeyPress={handlePress}
                             onChange={handleChangeCategoryName}
                             value={category}
                         />

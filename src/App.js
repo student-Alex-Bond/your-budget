@@ -8,8 +8,8 @@ import Incomes from "./components/Incomes";
 import {handleSubmit} from './utils/submitTransaction'
 
 const DateButton = styled.button`
-  color: white;
-  border: 1px solid white;
+  color: lightslategray;
+  border: 1px solid lightslategray;
   background-color: transparent;
   border-radius: 50%;
   width: 32px;
@@ -29,9 +29,9 @@ const DateLine = styled.div`
 const Link = styled.span`
   font-family: 'Marmelad', serif;
   cursor: pointer;
-  color: white;
+  color: lightslategray;
   margin: 0 8px;
-  border-bottom: ${({selected}) => (selected ? '2px solid white' : 'none')};
+  border-bottom: ${({selected}) => (selected ? '2px solid lightslategray' : 'none')};
 `
 
 const Nav = styled.nav`
@@ -42,7 +42,7 @@ const Nav = styled.nav`
 `
 const Table = styled.table`
   width: 450px;
-  text-align: left;
+  text-align: center;
   padding-top: 30px;
   margin: 0 auto;
  
@@ -87,7 +87,7 @@ const daily = () => {
             return acc + Number(item.summary)
         }, 0)}
 }
-
+    console.log(daily())
     return (
         <div className="App">
             <section>
@@ -98,7 +98,7 @@ const daily = () => {
                         <DateButton onClick={handleSubtractDay}>-</DateButton>
                         <DateButton onClick={handleAddDay}>+</DateButton>
                     </DateLine>
-                    <p>Ежедневно можно потратить:  {(daily()/30).toFixed()} руб</p>
+                    {daily() === undefined ? '' : <p>Ежедневно можно потратить:  {(daily()/30).toFixed()} руб</p>}
                 </header>
                 <main>
                         <Nav>
